@@ -65,6 +65,7 @@ void Error_Handler(void);
 #define BLE_IRQ_EXTI_IRQn EXTI0_IRQn
 #define BLE_RST_Pin GPIO_PIN_5
 #define BLE_RST_GPIO_Port GPIOC
+
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

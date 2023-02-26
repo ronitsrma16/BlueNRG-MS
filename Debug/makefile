@@ -17,6 +17,7 @@ RM := rm -rf
 -include Core/Startup/subdir.mk
 -include Core/Src/subdir.mk
 -include BlueNRG-MS/Target/subdir.mk
+-include BLE-App/Src/subdir.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
@@ -39,34 +40,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := BlueNRG_MS_Project
+BUILD_ARTIFACT_NAME := BlueNRG-MS
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-BlueNRG_MS_Project.elf \
+BlueNRG-MS.elf \
 
 MAP_FILES += \
-BlueNRG_MS_Project.map \
+BlueNRG-MS.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-BlueNRG_MS_Project.list \
+BlueNRG-MS.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: BlueNRG_MS_Project.elf secondary-outputs
+main-build: BlueNRG-MS.elf secondary-outputs
 
 # Tool invocations
-BlueNRG_MS_Project.elf BlueNRG_MS_Project.map: $(OBJS) $(USER_OBJS) E:\STM32\ code\BLE_workspace\Initialization_w_generated\STM32L476JGYX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "BlueNRG_MS_Project.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"E:\STM32 code\BLE_workspace\Initialization_w_generated\STM32L476JGYX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BlueNRG_MS_Project.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+BlueNRG-MS.elf BlueNRG-MS.map: $(OBJS) $(USER_OBJS) E:\STM32\ code\BlueNRG_MS_workspace\BlueNRG-MS\STM32L476JGYX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "BlueNRG-MS.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"E:\STM32 code\BlueNRG_MS_workspace\BlueNRG-MS\STM32L476JGYX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BlueNRG-MS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -75,14 +76,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-BlueNRG_MS_Project.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "BlueNRG_MS_Project.list"
+BlueNRG-MS.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "BlueNRG-MS.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) BlueNRG_MS_Project.elf BlueNRG_MS_Project.list BlueNRG_MS_Project.map default.size.stdout
+	-$(RM) BlueNRG-MS.elf BlueNRG-MS.list BlueNRG-MS.map default.size.stdout
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)

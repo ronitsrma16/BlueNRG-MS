@@ -21,6 +21,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "ble_init.h"
 
 /* USER CODE END Includes */
 
@@ -88,7 +89,7 @@ int main(void)
   MX_GPIO_Init();
   MX_CRC_Init();
   /* USER CODE BEGIN 2 */
-
+  BlueNRG_MS_Init();
   /* USER CODE END 2 */
 
   /* Infinite loop */

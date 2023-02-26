@@ -8,6 +8,6 @@
 #ifndef BLE_INIT_H_
 #define BLE_INIT_H_
 
-
+void BlueNRG_MS_Init(void);
 
 #endif /* BLE_INIT_H_ */
